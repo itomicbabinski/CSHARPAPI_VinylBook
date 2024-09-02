@@ -13,7 +13,8 @@ create table albums(
 id int not null primary key identity(1,1),
 title varchar(200) not null,
 artist varchar(100) not null,
-language_type bit
+language bit,
+genre varchar(20) 
 );
 
 create table users(
@@ -53,7 +54,7 @@ alter table exchanges add foreign key (album_id) references users(id);
 alter table exchanges add foreign key (record_copy_id) references record_copyes(id);
 alter table exchanges add foreign key (album_id) references albums(id);
 
-insert into albums (artist,title,language_type) values 
+insert into albums (artist,title,language) values 
 ('Arsen Dedić','25 Greatest Hits',0),
 ('Atomsko Sklonište','Mentalna Higijena',0),
 ('Atomsko Sklonište','Zabranjeno Snimanje',0),

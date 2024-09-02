@@ -12,6 +12,7 @@ namespace CSHARPAPI_VinylBook.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Album> Albums { get; set; }
 
     }
 
