@@ -1,3 +1,6 @@
+using CSHARPAPI_VinylBook.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,13 +10,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// dodavanje baze podataka
+builder.Services.AddDbContext<VinylBookContext>(
+    options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("VinylBookContext"));
+    }
+    );
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options => {
+        options.ConfigObject.AdditionalItems.Add("requestSnippetsEnabled", true);
+        options.EnableTryItOutByDefault();
+    });
 }
 
 app.UseHttpsRedirection();

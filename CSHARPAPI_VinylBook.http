@@ -1,6 +1,0 @@
-@CSHARPAPI_VinylBook_HostAddress = http://localhost:5285
-
-GET {{CSHARPAPI_VinylBook_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
