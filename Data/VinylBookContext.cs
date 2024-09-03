@@ -10,7 +10,7 @@ namespace CSHARPAPI_VinylBook.Data
         public VinylBookContext(DbContextOptions<VinylBookContext> options) : base(options)        {
 
         }
-
+                            //ovo je ime baze
         public DbSet<User> Users { get; set; }
         public DbSet<Album> Albums { get; set; }
 
