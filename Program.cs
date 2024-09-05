@@ -20,20 +20,26 @@ builder.Services.AddDbContext<VinylBookContext>(
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// Configure the HTTP request pipeline. 
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI(options => {
         options.ConfigObject.AdditionalItems.Add("requestSnippetsEnabled", true);
         options.EnableTryItOutByDefault();
     });
-}
+//}
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+//za potrebe produkcije
+app.UseStaticFiles();
+app.UseDefaultFiles();
+app.MapFallbackToFile("Index.html");
+
 
 app.Run();
