@@ -1,4 +1,4 @@
-using CSHARPAPI_VinylBook.Data;
+﻿using CSHARPAPI_VinylBook.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +17,17 @@ builder.Services.AddDbContext<VinylBookContext>(
         options.UseSqlServer(builder.Configuration.GetConnectionString("VinylBookContext"));
     }
     );
+
+// Svi se od svuda na sve moguce nacine mogu spojitina nas API
+// citati https://code-maze.com/aspnetcore-webapi-best-practices/
+builder.Services.AddCors(opcije =>
+{
+    opcije.AddPolicy("CorsPolicy",
+        builder =>
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+    );
+
+});
 
 var app = builder.Build();
 
@@ -40,6 +51,6 @@ app.MapControllers();
 app.UseStaticFiles();
 app.UseDefaultFiles();
 app.MapFallbackToFile("Index.html");
-
+app.UseCors("CorsPolicy");
 
 app.Run();
