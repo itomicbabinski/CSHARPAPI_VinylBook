@@ -1,4 +1,5 @@
 ﻿using CSHARPAPI_VinylBook.Data;
+using CSHARPAPI_VinylBook.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,11 @@ builder.Services.AddCors(opcije =>
     );
 
 });
+
+// automapper
+builder.Services.AddAutoMapper(typeof(VinylBookMappingProfile));
+
+
 
 var app = builder.Build();
 

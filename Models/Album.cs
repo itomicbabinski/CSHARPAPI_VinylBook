@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace CSHARPAPI_VinylBook.Models
 {
@@ -9,7 +10,10 @@ namespace CSHARPAPI_VinylBook.Models
             public string? Artist { get; set; }
             public bool? Language { get; set; }
             public string? Genre { get; set; }
-            
-        }
+
+            public ICollection<User>? Users { get; } = [];
+            public ICollection<RecordCopy>? RecordCopyes { get; } = [];
+
+    }
    
 }

@@ -22,8 +22,8 @@ id int not null primary key identity(1,1),
 uname varchar(20) not null,
 ulastname varchar(20) not null,
 uemail varchar(50) not null,
-uphone varchar(20) not null,
-uaddress varchar(50) not null
+uphone varchar(20),
+uaddress varchar(50)
 );
 
 create table record_copyes(
