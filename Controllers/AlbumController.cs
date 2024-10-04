@@ -25,7 +25,7 @@ namespace CSHARPAPI_VinylBook.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(int id)//--------------
         {
             return Ok(_context.Albums.Find(id));
         }

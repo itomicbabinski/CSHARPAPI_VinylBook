@@ -24,7 +24,7 @@ namespace CSHARPAPI_VinylBook.Controllers
             }
             try
             {
-                return Ok(_mapper.Map<List<RecordCopyDTORead>>(_context.RecordCopyes));
+                return Ok(_mapper.Map<List<RecordCopyDTORead>>(_context.Record_Copyes));
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace CSHARPAPI_VinylBook.Controllers
             RecordCopy? e;
             try
             {
-                e = _context.RecordCopyes.Find(id);
+                e = _context.Record_Copyes.Find(id);
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace CSHARPAPI_VinylBook.Controllers
             try
             {
                 var e = _mapper.Map<RecordCopy>(dto);
-                _context.RecordCopyes.Add(e);
+                _context.Record_Copyes.Add(e);
                 _context.SaveChanges();
                 return StatusCode(StatusCodes.Status201Created, _mapper.Map<RecordCopyDTORead>(e));
             }
@@ -96,7 +96,7 @@ namespace CSHARPAPI_VinylBook.Controllers
                 RecordCopy? e;
                 try
                 {
-                    e = _context.RecordCopyes.Find(id);
+                    e = _context.Record_Copyes.Find(id);
                 }
                 catch (Exception ex)
                 {
@@ -108,7 +108,7 @@ namespace CSHARPAPI_VinylBook.Controllers
                 }
                 e = _mapper.Map(dto, e);
 
-                _context.RecordCopyes.Update(e);
+                _context.Record_Copyes.Update(e);
                 _context.SaveChanges();
 
                 return Ok(new { poruka = "Uspješno promjenjeno" });
@@ -134,7 +134,7 @@ namespace CSHARPAPI_VinylBook.Controllers
                 RecordCopy? e;
                 try
                 {
-                    e = _context.RecordCopyes.Find(id);
+                    e = _context.Record_Copyes.Find(id);
                 }
                 catch (Exception ex)
                 {
@@ -144,7 +144,7 @@ namespace CSHARPAPI_VinylBook.Controllers
                 {
                     return NotFound("RecordCopy ne postoji u bazi");
                 }
-                _context.RecordCopyes.Remove(e);
+                _context.Record_Copyes.Remove(e);
                 _context.SaveChanges();
                 return Ok(new { poruka = "Uspješno obrisano" });
             }
