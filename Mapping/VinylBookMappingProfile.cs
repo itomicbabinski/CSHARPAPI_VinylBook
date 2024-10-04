@@ -28,8 +28,8 @@ namespace CSHARPAPI_VinylBook.Mapping
                     opt => opt.MapFrom(src => src.User.Ulastname)
                 );
             CreateMap<RecordCopy, RecordCopyDTORead>()
-                .ForMember(
-                    dest => dest.AlbumTitle,
+                .ForCtorParam(
+                    "AlbumTitle",
                     opt => opt.MapFrom(src => src.Album.Title)
                 );
             CreateMap<RecordCopy, RecordCopyDTORead>()
