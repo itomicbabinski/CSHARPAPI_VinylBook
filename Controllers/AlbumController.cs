@@ -1,61 +1,115 @@
-﻿using CSHARPAPI_VinylBook.Data;
+﻿using AutoMapper;
+using CSHARPAPI_VinylBook.Data;
 using CSHARPAPI_VinylBook.Models;
+using CSHARPAPI_VinylBook.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CSHARPAPI_VinylBook.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class AlbumController : ControllerBase
+    public class AlbumController(VinylBookContext context, IMapper mapper) : VinylBookController(context, mapper)
     {
-        private readonly VinylBookContext _context;
-
-        public AlbumController(VinylBookContext context)
-
-        {
-            _context = context;
-        }
 
         // RUTE
         [HttpGet]
-        public IActionResult Get()
+        public ActionResult<List<AlbumDTORead>> Get()
         {
-            return Ok(_context.Albums);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
+            try
+            {
+                return Ok(_mapper.Map<List<AlbumDTORead>>(_context.Albums));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
         }
 
         [HttpGet]
         [Route("{id:int}")]
-        public IActionResult GetById(int id)//--------------
+        public ActionResult<AlbumDTORead> GetById(int id)
         {
-            return Ok(_context.Albums.Find(id));
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
+            Album? e;
+            try
+            {
+                e = _context.Albums.Find(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+            if (e == null)
+            {
+                return NotFound(new { poruka = "Album ne postoji u bazi" });
+            }
+
+            return Ok(_mapper.Map<AlbumDTORead>(e));
         }
 
         [HttpPost]
-        public IActionResult Post(Album album)
+        public IActionResult Post(AlbumDTOInsertUpdate dto)
         {
-            _context.Albums.Add(album);
-            _context.SaveChanges();
-            return StatusCode(StatusCodes.Status201Created, album);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
+            try
+            {
+                var e = _mapper.Map<Album>(dto);
+                _context.Albums.Add(e);
+                _context.SaveChanges();
+                return StatusCode(StatusCodes.Status201Created, _mapper.Map<AlbumDTORead>(e));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
         }
 
         [HttpPut]
         [Route("{id:int}")]
         [Produces("application/json")]
-        public IActionResult Put(int id, Album album)
+        public IActionResult Put(int id, AlbumDTOInsertUpdate dto)
         {
-            var albumFromDB = _context.Albums.Find(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
+            try
+            {
+                Album? e;
+                try
+                {
+                    e = _context.Albums.Find(id);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                if (e == null)
+                {
+                    return NotFound(new { poruka = "Album ne postoji u bazi" });
+                }
 
-            // za sada ručno, kasnije Mapper
-            albumFromDB.Title = album.Title;
-            albumFromDB.Artist = album.Artist;
-            albumFromDB.Language = album.Language;
-            albumFromDB.Genre = album.Genre;
-            
-            _context.Albums.Update(albumFromDB);
-            _context.SaveChanges();
+                e = _mapper.Map(dto, e);
 
-            return Ok(new { message = "Changed successfully" });
+                _context.Albums.Update(e);
+                _context.SaveChanges();
 
+                return Ok(new { poruka = "Uspješno promjenjeno" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
         }
 
         [HttpDelete]
@@ -63,10 +117,34 @@ namespace CSHARPAPI_VinylBook.Controllers
         [Produces("application/json")]
         public IActionResult Delete(int id)
         {
-            var albumFromDB = _context.Albums.Find(id);
-            _context.Albums.Remove(albumFromDB);
-            _context.SaveChanges();
-            return Ok(new { messagge = "Deleted successfully" });
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
+            try
+            {
+                Album? e;
+                try
+                {
+                    e = _context.Albums.Find(id);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(new { poruka = ex.Message });
+                }
+                if (e == null)
+                {
+                    return NotFound("Album ne postoji u bazi");
+                }
+                _context.Albums.Remove(e);
+                _context.SaveChanges();
+                return Ok(new { poruka = "Uspješno obrisano" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
         }
+
     }
 }
