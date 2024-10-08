@@ -25,7 +25,19 @@ namespace CSHARPAPI_VinylBook.Data
             modelBuilder.Entity<RecordCopy>().HasOne(r => r.Album);
             modelBuilder.Entity<RecordCopy>().HasOne(r => r.User);
 
+            modelBuilder.Entity<RecordCopy>(entity =>
+            {
+                entity.HasOne(d => d.Album)
+                    .WithMany(p => p.RecordCopyes);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.RecordCopyes);
+
+            });
+
+
             // implementacija veze n:n
+            /*
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Albums)
                 .WithMany(a => a.Users)
@@ -34,7 +46,7 @@ namespace CSHARPAPI_VinylBook.Data
                 r => r.HasOne<User>().WithMany().HasForeignKey("user"),
                 r => r.ToTable("record_copyes")
                 );
-
+            */
         }
 
     }

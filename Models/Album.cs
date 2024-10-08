@@ -8,10 +8,10 @@ namespace CSHARPAPI_VinylBook.Models
         {
             public string? Title { get; set; }
             public string? Artist { get; set; }
+        
             public bool? Language { get; set; }
             public string? Genre { get; set; }
 
-            public ICollection<User>? Users { get; } = [];
             public ICollection<RecordCopy>? RecordCopyes { get; } = [];
 
     }

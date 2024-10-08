@@ -3,6 +3,7 @@ using CSHARPAPI_VinylBook.Data;
 using CSHARPAPI_VinylBook.Models;
 using CSHARPAPI_VinylBook.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CSHARPAPI_VinylBook.Controllers
 {
@@ -139,6 +140,31 @@ namespace CSHARPAPI_VinylBook.Controllers
                 _context.Albums.Remove(e);
                 _context.SaveChanges();
                 return Ok(new { poruka = "Uspješno obrisano" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        [Route("Records/{id:int}")]
+        public ActionResult<List<RecordCopyDTORead>> getRecords(int id)
+        {
+            if (!ModelState.IsValid || id <= 0)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var n = _context.Albums
+                    .Include(i => i.RecordCopyes).ThenInclude(i => i.User).FirstOrDefault(x => x.Id == id);
+                if (n == null)
+                {
+                    return BadRequest("Ne postoji recorsd s šifrom " + id + " u bazi");
+                }
+
+                return Ok(_mapper.Map<List<RecordCopyDTORead>>(n.RecordCopyes));
             }
             catch (Exception ex)
             {

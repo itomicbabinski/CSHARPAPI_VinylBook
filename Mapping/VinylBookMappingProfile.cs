@@ -18,6 +18,18 @@ namespace CSHARPAPI_VinylBook.Mapping
             CreateMap<AlbumDTOInsertUpdate, Album>();
 
             CreateMap<RecordCopy, RecordCopyDTORead>()
+               .ForCtorParam(
+                 "UserInfo",
+                 opt => opt.MapFrom(src => src.User.Uname + " " + src.User.Ulastname)
+               ).ForCtorParam(
+                 "AlbumInfo",
+                 opt => opt.MapFrom(src => src.Album.Title + " " + src.Album.Artist)
+               );
+
+
+
+            /*
+            CreateMap<RecordCopy, RecordCopyDTORead>()
                .ForMember(
                  dest => dest.UserFirstName,
                  opt => opt.MapFrom(src => src.User.Uname)
@@ -39,7 +51,7 @@ namespace CSHARPAPI_VinylBook.Mapping
                     dest => dest.AlbumArtist,
                     opt => opt.MapFrom(src => src.Album.Artist)
                 );
-
+             */
             CreateMap<RecordCopy, RecordCopyDTOInsertUpdate>()
                 .ForMember(
                     dest => dest.AlbumId,
@@ -51,7 +63,7 @@ namespace CSHARPAPI_VinylBook.Mapping
                     opt => opt.MapFrom(src => src.User.Id)
                 );
             CreateMap<RecordCopyDTOInsertUpdate, RecordCopy>();
-
+           
         }
     }
 }

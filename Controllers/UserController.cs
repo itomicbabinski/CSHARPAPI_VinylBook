@@ -1,5 +1,6 @@
 ﻿using CSHARPAPI_VinylBook.Data;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using CSHARPAPI_VinylBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using CSHARPAPI_VinylBook.Models.DTO;
@@ -176,6 +177,31 @@ namespace CSHARPAPI_VinylBook.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("Records/{id:int}")]
+        public ActionResult<List<RecordCopyDTORead>> getRecords(int id)
+        {
+            if (!ModelState.IsValid || id <= 0)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var n = _context.Users
+                    .Include(i => i.RecordCopyes).ThenInclude(i => i.Album).FirstOrDefault(x => x.Id == id);
+                if (n == null)
+                {
+                    return BadRequest("Ne postoji recorsd s šifrom " + id + " u bazi");
+                }
+
+                return Ok(_mapper.Map<List<RecordCopyDTORead>>(n.RecordCopyes));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+        }
 
 
 
