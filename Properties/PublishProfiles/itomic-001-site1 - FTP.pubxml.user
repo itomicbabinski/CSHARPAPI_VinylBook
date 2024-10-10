@@ -8,12 +8,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
     <_PublishTargetUrl>ftp://win6218.site4now.net:21/site1</_PublishTargetUrl>
-    <History>True|2024-10-07T15:38:22.9468684Z;False|2024-10-07T17:37:05.0601945+02:00;True|2024-10-07T15:52:24.3585720+02:00;False|2024-10-07T15:51:19.8141066+02:00;True|2024-10-04T17:24:14.3973420+02:00;False|2024-10-04T17:23:09.4934617+02:00;True|2024-09-27T00:23:24.5619502+02:00;False|2024-09-27T00:22:04.5460978+02:00;True|2024-09-26T20:20:30.8912264+02:00;False|2024-09-26T20:16:23.1477716+02:00;True|2024-09-26T16:19:33.2973997+02:00;False|2024-09-26T16:18:09.3639054+02:00;True|2024-09-25T17:14:56.3629694+02:00;False|2024-09-25T17:13:15.1306019+02:00;True|2024-09-25T17:00:07.6964469+02:00;False|2024-09-25T16:58:55.6495969+02:00;True|2024-09-25T16:46:55.7894355+02:00;False|2024-09-25T16:45:50.2928006+02:00;True|2024-09-24T21:28:41.6854172+02:00;False|2024-09-24T21:22:04.8548879+02:00;</History>
+    <History>True|2024-10-10T14:31:30.2325647Z;False|2024-10-10T16:29:56.2800374+02:00;True|2024-10-07T17:38:22.9468684+02:00;False|2024-10-07T17:37:05.0601945+02:00;True|2024-10-07T15:52:24.3585720+02:00;False|2024-10-07T15:51:19.8141066+02:00;True|2024-10-04T17:24:14.3973420+02:00;False|2024-10-04T17:23:09.4934617+02:00;True|2024-09-27T00:23:24.5619502+02:00;False|2024-09-27T00:22:04.5460978+02:00;True|2024-09-26T20:20:30.8912264+02:00;False|2024-09-26T20:16:23.1477716+02:00;True|2024-09-26T16:19:33.2973997+02:00;False|2024-09-26T16:18:09.3639054+02:00;True|2024-09-25T17:14:56.3629694+02:00;False|2024-09-25T17:13:15.1306019+02:00;True|2024-09-25T17:00:07.6964469+02:00;False|2024-09-25T16:58:55.6495969+02:00;True|2024-09-25T16:46:55.7894355+02:00;False|2024-09-25T16:45:50.2928006+02:00;True|2024-09-24T21:28:41.6854172+02:00;False|2024-09-24T21:22:04.8548879+02:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>07/10/2024 15:12:49</publishTime>
+      <publishTime>10/10/2024 12:41:11</publishTime>
     </File>
     <File Include="appsettings.json">
       <publishTime>09/24/2024 21:36:05</publishTime>
@@ -28,16 +28,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2023 21:59:42</publishTime>
     </File>
     <File Include="CSHARPAPI_VinylBook.deps.json">
-      <publishTime>07/10/2024 17:36:13</publishTime>
+      <publishTime>10/10/2024 16:30:25</publishTime>
     </File>
     <File Include="CSHARPAPI_VinylBook.dll">
-      <publishTime>10/07/2024 17:37:12</publishTime>
+      <publishTime>10/10/2024 16:30:24</publishTime>
     </File>
     <File Include="CSHARPAPI_VinylBook.exe">
-      <publishTime>10/07/2024 17:37:13</publishTime>
+      <publishTime>10/10/2024 16:30:25</publishTime>
     </File>
     <File Include="CSHARPAPI_VinylBook.pdb">
-      <publishTime>07/10/2024 17:36:12</publishTime>
+      <publishTime>10/10/2024 16:30:24</publishTime>
     </File>
     <File Include="CSHARPAPI_VinylBook.runtimeconfig.json">
       <publishTime>04/10/2024 14:23:35</publishTime>
@@ -166,7 +166,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2021 01:49:44</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>10/07/2024 17:37:33</publishTime>
+      <publishTime>10/10/2024 16:30:35</publishTime>
     </File>
     <File Include="wwwroot/assets/index-6sid3azd.js">
       <publishTime>09/26/2024 20:14:11</publishTime>
@@ -175,7 +175,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/24/2024 21:18:08</publishTime>
     </File>
     <File Include="wwwroot/assets/index-BoZM857L.css">
-      <publishTime>07/10/2024 15:49:04</publishTime>
+      <publishTime>10/10/2024 16:26:07</publishTime>
     </File>
     <File Include="wwwroot/assets/index-C39RIaZ2.js">
       <publishTime>09/25/2024 17:11:34</publishTime>
@@ -185,6 +185,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="wwwroot/assets/index-Cpf0HKk5.js">
       <publishTime>09/26/2024 20:14:41</publishTime>
+    </File>
+    <File Include="wwwroot/assets/index-CRf9ZbHL.js">
+      <publishTime>10/10/2024 16:26:07</publishTime>
     </File>
     <File Include="wwwroot/assets/index-CVkz70-T.js">
       <publishTime>09/25/2024 16:57:05</publishTime>
@@ -199,7 +202,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/27/2024 00:20:20</publishTime>
     </File>
     <File Include="wwwroot/index.html">
-      <publishTime>07/10/2024 15:49:04</publishTime>
+      <publishTime>10/10/2024 16:26:07</publishTime>
     </File>
     <File Include="wwwroot/vite.svg">
       <publishTime>09/10/2024 14:58:12</publishTime>
