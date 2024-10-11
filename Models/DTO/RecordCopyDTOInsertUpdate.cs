@@ -4,10 +4,10 @@ namespace CSHARPAPI_VinylBook.Models.DTO
 {
     public record RecordCopyDTOInsertUpdate(
         [Required(ErrorMessage = "Album required!")]
-        int? AlbumId,
+        int? AlbumIdn,
 
         [Required(ErrorMessage = "User required!")]
-        int? UserId, 
+        int? UserIdn, 
 
         bool? Duplicate,
         string? Media_Condition,

@@ -54,12 +54,12 @@ namespace CSHARPAPI_VinylBook.Mapping
              */
             CreateMap<RecordCopy, RecordCopyDTOInsertUpdate>()
                 .ForMember(
-                    dest => dest.AlbumId,
+                    dest => dest.AlbumIdn,
                     opt => opt.MapFrom(src => src.Album.Id)
                 );
             CreateMap<RecordCopy, RecordCopyDTOInsertUpdate>()
                 .ForMember(
-                    dest => dest.UserId,
+                    dest => dest.UserIdn,
                     opt => opt.MapFrom(src => src.User.Id)
                 );
             CreateMap<RecordCopyDTOInsertUpdate, RecordCopy>();

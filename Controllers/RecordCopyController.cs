@@ -24,7 +24,7 @@ namespace CSHARPAPI_VinylBook.Controllers
             }
             try
             {
-                return Ok(_mapper.Map<List<RecordCopyDTORead>>(_context.Record_Copyes));
+                return Ok(_mapper.Map<List<RecordCopyDTORead>>(_context.Record_Copyes.Include(r=>r.User).Include(r=>r.Album)));
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace CSHARPAPI_VinylBook.Controllers
             RecordCopy? e;
             try
             {
-                e = _context.Record_Copyes.Find(id);
+                e = _context.Record_Copyes.Include(r => r.User).Include(r => r.Album).FirstOrDefault(r=>r.Id == id);
             }
             catch (Exception ex)
             {
@@ -66,9 +66,42 @@ namespace CSHARPAPI_VinylBook.Controllers
             {
                 return BadRequest(new { poruka = ModelState });
             }
+
+
+            Album? ar;
+             try
+            {
+                ar = _context.Albums.Find(dto.AlbumIdn);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+            if (ar == null)
+            {
+                return NotFound(new { poruka = "Album ne postoji u bazi" });
+            }
+
+            User? ur;
             try
             {
+                ur = _context.Users.Find(dto.UserIdn);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+            if (ur == null)
+            {
+                return NotFound(new { poruka = "User ne postoji u bazi" });
+            }
+
+            try
+
+            {
                 var e = _mapper.Map<RecordCopy>(dto);
+                e.Album=ar;
+                e.User=ur;
                 _context.Record_Copyes.Add(e);
                 _context.SaveChanges();
                 return StatusCode(StatusCodes.Status201Created, _mapper.Map<RecordCopyDTORead>(e));
